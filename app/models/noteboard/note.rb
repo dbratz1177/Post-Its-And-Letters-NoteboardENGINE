@@ -1,7 +1,7 @@
 module Noteboard
   class PosterValidator < ActiveModel::Validator
     def validate(record)
-      user = User.find(self.poster_id)
+      user = User.find(record.poster_id)
       if user.nil?
         record.errors[:poster] = "poster_id does not map to a user in the database"
       end
@@ -9,7 +9,7 @@ module Noteboard
   end
   class NoteboardValidator < ActiveModel::Validator
     def validate(record)
-      board = Noteboard.find(self.noteboard_id)
+      board = Noteboard::Noteboard.find(record.noteboard_id)
       if board.nil?
         record.errors[:board] = "noteboard_id does not map to a noteboard in the database"
       end
