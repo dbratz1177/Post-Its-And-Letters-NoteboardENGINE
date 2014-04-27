@@ -16,7 +16,7 @@
     <% @notes.each do |note| %>
       <tr>
         <td><%= note.noteboard_id %></td>
-        <td><%= note.poster_id %></td>
+        <td><%= (User.find(note.poster_id)).username %></td>
         <td><%= note.message %></td>
         <td><%= link_to 'Show', note %></td>
         <td><%= link_to 'Edit', edit_note_path(note) %></td>

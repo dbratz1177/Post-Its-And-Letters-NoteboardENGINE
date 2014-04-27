@@ -9,7 +9,7 @@ module Noteboard
   end
   class NoteboardValidator < ActiveModel::Validator
     def validate(record)
-      board = Noteboard::Noteboard.find(record.noteboard_id)
+      board = Noteboard.find(record.noteboard_id)
       if board.nil?
         record.errors[:board] = "noteboard_id does not map to a noteboard in the database"
       end
