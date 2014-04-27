@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Noteboard:</strong>
+  <%= @note.noteboard_id %>
+</p>
+
+<p>
+  <strong>Poster:</strong>
+  <%= @note.poster_id %>
+</p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @note.message %>
+</p>
+
+<%= link_to 'Edit', edit_note_path(@note) %> |
+<%= link_to 'Back', notes_path %>

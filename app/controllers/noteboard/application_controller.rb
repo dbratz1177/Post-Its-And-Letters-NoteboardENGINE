@@ -1,4 +1,3 @@
-module Noteboard
-  class ApplicationController < ActionController::Base
-  end
+class Noteboard::ApplicationController < ApplicationController
+
 end
