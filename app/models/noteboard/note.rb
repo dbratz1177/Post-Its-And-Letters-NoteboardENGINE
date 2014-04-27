@@ -1,7 +1,29 @@
 module Noteboard
+  class PosterValidator < ActiveModel::Validator
+    def validate(record)
+      user = User.find(self.poster_id)
+      if user.nil?
+        record.errors[:poster] = "poster_id does not map to a user in the database"
+      end
+    end
+  end
+  class NoteboardValidator < ActiveModel::Validator
+    def validate(record)
+      board = Noteboard.find(self.noteboard_id)
+      if board.nil?
+        record.errors[:board] = "noteboard_id does not map to a noteboard in the database"
+      end
+    end
+  end
   class Note < ActiveRecord::Base
     belongs_to :noteboard  
-    #Need a before call back that makes sure a poster_id
-    #is a user. And that the noteboard_id is a real noteboard
+    before_save :default_settings
+
+    #Makes sure the noteboard exists
+    validates_with PosterValidator
+    #Makes sure the user exists
+    validates_with NoteboardValidator
+    def default_settings
+    end
   end
 end
