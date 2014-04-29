@@ -3,7 +3,8 @@
 <table>
   <thead>
     <tr>
-      <th>Noteboard</th>
+      <th>Noteboard_ID</th>
+      <th>Noteboard_Owner</th>
       <th>Poster</th>
       <th>Message</th>
       <th></th>
@@ -16,6 +17,7 @@
     <% @notes.each do |note| %>
       <tr>
         <td><%= note.noteboard_id %></td>
+		<td><%= (User.find((Noteboard::Noteboard.find(note.noteboard_id)).user_id)).username.capitalize %></td>
         <td><%= (User.find(note.poster_id)).username %></td>
         <td><%= note.message %></td>
         <td><%= link_to 'Show', note %></td>
