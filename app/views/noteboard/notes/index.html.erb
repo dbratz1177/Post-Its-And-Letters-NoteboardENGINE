@@ -15,10 +15,12 @@
 
   <tbody>
     <% @notes.each do |note| %>
+	  <% noteboard_owner = User.find((Noteboard::Noteboard.find(note.noteboard_id)).user_id) %>
+	  <% poster = User.find(note.poster_id) %>
       <tr>
         <td><%= note.noteboard_id %></td>
-		<td><%= (User.find((Noteboard::Noteboard.find(note.noteboard_id)).user_id)).username.capitalize %></td>
-        <td><%= (User.find(note.poster_id)).username %></td>
+		<td><%= link_to "#{noteboard_owner.username.capitalize}", main_app.home_path(noteboard_owner.username) %></td>
+        <td><%= link_to "#{poster.username.capitalize}", main_app.home_path(poster.username) %></td>
         <td><%= note.message %></td>
         <td><%= link_to 'Show', note %></td>
         <td><%= link_to 'Edit', edit_note_path(note) %></td>
