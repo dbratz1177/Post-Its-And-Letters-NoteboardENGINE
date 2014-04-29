@@ -7,19 +7,35 @@ module Noteboard
     # GET /notes
     def index
       @notes = Note.all
+      #ajax support
+      respond_to do |format|
+	    myRenderer(format,@notes)
+	  end
     end
 
     # GET /notes/1
     def show
+      #ajax support
+      respond_to do |format|
+	    myRenderer(format,@note)
+	  end
     end
 
     # GET /notes/new
     def new
       @note = Note.new
+      #ajax support
+      respond_to do |format|
+	    myRenderer(format,@note)
+	  end
     end
 
     # GET /notes/1/edit
     def edit
+      #ajax support
+      respond_to do |format|
+	    myRenderer(format,@note)
+	  end
     end
 
     # POST /notes
